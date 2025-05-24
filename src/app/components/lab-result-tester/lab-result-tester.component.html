@@ -1,12 +1,23 @@
+<!-- Título principal del componente -->
 <h2>Test de API real – Resultados de Hemoglobina</h2>
 
+<!-- Muestra un mensaje de carga mientras se esperan los datos cargando es una variable del ts-->
 <div *ngIf="cargando">⏳ Cargando...</div>
+
+<!-- Muestra un mensaje de error si la petición falló | error es una variable del ts -->
 <div *ngIf="error">❌ Error al cargar datos.</div>
 
+<!-- Muestra la lista de resultados si:
+     - no está cargando
+     - existen elementos en el array `resultados` -->
 <ul *ngIf="!cargando && resultados.length">
+  <!-- Itera sobre el array `resultados` y muestra cada resultado -->
   <li *ngFor="let r of resultados">
     {{ r.fechaPrueba }} | {{ r.tipoPrueba }} | {{ r.resultado }} | {{ r.rangoNormal }}
   </li>
 </ul>
 
-<p *ngIf="!cargando && resultados.length === 0">⚠️ No hay resultados de Hemoglobina.</p>
+<!-- Muestra un mensaje si la carga terminó pero no hay resultados -->
+<p *ngIf="!cargando && resultados.length === 0">
+  ⚠️ No hay resultados de Hemoglobina.
+</p>
