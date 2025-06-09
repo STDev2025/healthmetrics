@@ -1,0 +1,36 @@
+<h2>Resultados de Laboratorio</h2>
+
+@for (r of resultados; track r.id) {
+  <div>
+    <strong>{{ r.tipoPrueba }}</strong> - {{ r.resultado }} ({{ r.rangoNormal }})
+    <p>{{ r.interpretacion }}</p>
+    <p>{{ r.fechaPrueba }}</p>
+    <hr />
+  </div>
+}
+
+
+<table>
+  <tr>
+    <th>Fecha</th>
+    <th>Preba</th>
+    <th>Resultado</th>
+    <th>Interpretación</th>
+  </tr>
+  @for (r of resultados; track r.id) {
+    <tr>
+      <td>{{ r.fechaPrueba }}</td>
+      <td>{{ r.tipoPrueba }}</td>
+      <td>{{ r.resultado }}</td>
+      <td>{{ r.interpretacion }}</td>
+    </tr>
+  }
+</table>
+
+<input [(ngModel)]="nuevoResultado.fechaPrueba" placeholder="Fecha" />
+<input [(ngModel)]="nuevoResultado.tipoPrueba" placeholder="Tipo" />
+<input [(ngModel)]="nuevoResultado.rangoNormal" placeholder="Rango" />
+<input type="number" [(ngModel)]="nuevoResultado.resultado" placeholder="Resultado" />
+<input [(ngModel)]="nuevoResultado.interpretacion" placeholder="Interpretación" />
+
+<button (click)="agregarResultado()">Agregar Resultado</button>
