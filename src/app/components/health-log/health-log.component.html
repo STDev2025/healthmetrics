@@ -1,0 +1,42 @@
+<h2>📓 Bitácora de Salud Diaria</h2>
+
+<textarea [(ngModel)]="entradaLibre"
+          rows="18"
+          style="width: 100%; max-width: 1000px;"
+          class="form-control"
+          placeholder="Describe tu día en lenguaje natural...">
+</textarea>
+
+<div class="mt-2">
+  <button class="btn btn-primary" (click)="procesarTexto()">Validar entrada</button>
+  <button class="btn btn-success ms-2" (click)="guardar()" [disabled]="!previsualizacion">Guardar</button>
+</div>
+
+<hr>
+
+<h3>🔍 Previsualización por categoría</h3>
+
+<div *ngIf="previsualizacion.sueno">
+  <h4>🛌 Sueño</h4>
+  <pre>{{ previsualizacion.sueno | json }}</pre>
+</div>
+
+<div *ngIf="previsualizacion.medicacion">
+  <h4>💊 Medicación</h4>
+  <pre>{{ previsualizacion.medicacion | json }}</pre>
+</div>
+
+<div *ngIf="previsualizacion.ejercicio">
+  <h4>🏃 Ejercicio</h4>
+  <pre>{{ previsualizacion.ejercicio | json }}</pre>
+</div>
+
+<div *ngIf="previsualizacion.presion">
+  <h4>🔬 Presión Arterial</h4>
+  <pre>{{ previsualizacion.presion | json }}</pre>
+</div>
+
+<div *ngIf="previsualizacion.observaciones">
+  <h4>🧠 Observaciones</h4>
+  <pre>{{ previsualizacion.observaciones | json }}</pre>
+</div>

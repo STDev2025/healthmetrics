@@ -1,0 +1,73 @@
+<h2>Resultados de Laboratorio</h2>
+
+@for (r of resultados(); track r.id) {
+  <div>
+    <strong>{{ r.tipoPrueba }}</strong> - {{ r.resultado }} ({{ r.rangoNormal }})
+    <p>{{ r.interpretacion }}</p>
+    <p>{{ r.fechaPrueba }}</p>
+    <hr />
+  </div>
+}
+
+
+<table>
+  <tr>
+    <th>Fecha</th>
+    <th>Preba</th>
+    <th>Resultado</th>
+    <th>Interpretación</th>
+  </tr>
+  @for (r of resultados(); track r.id) {
+    <tr>
+      <td>{{ r.fechaPrueba }}</td>
+      <td>{{ r.tipoPrueba }}</td>
+      <td>{{ r.resultado }}</td>
+      <td>{{ r.interpretacion }}</td>
+    </tr>
+  }
+</table>
+
+<input [(ngModel)]="nuevoResultado.fechaPrueba" placeholder="Fecha" />
+<input [(ngModel)]="nuevoResultado.tipoPrueba" placeholder="Tipo" />
+<input [(ngModel)]="nuevoResultado.rangoNormal" placeholder="Rango" />
+<input type="number" [(ngModel)]="nuevoResultado.resultado" placeholder="Resultado" />
+<input [(ngModel)]="nuevoResultado.interpretacion" placeholder="Interpretación" />
+
+<button (click)="agregarResultado()">Agregar Resultado</button>
+
+
+<input [(ngModel)]="username" placeholder="Escribe tu nombre">
+<p>Hola, {{ username }}!</p>
+
+<h2>ID: {{id}}</h2>
+
+@if (id) {
+  <p>ID recibido: {{ id }}</p>
+} @else {
+  <p>No hay ID</p>
+}
+
+<h2>Resultado Detallado</h2>
+
+@if (resultadoFiltrado) {
+  <p><strong>{{ resultadoFiltrado.tipoPrueba }}</strong> - {{ resultadoFiltrado.resultado }} ({{ resultadoFiltrado.rangoNormal }})</p>
+  <p>{{ resultadoFiltrado.interpretacion }}</p>
+  <p>{{ resultadoFiltrado.fechaPrueba }}</p>
+} @else {
+  <p>⚠️ No se encontró resultado con ese ID.</p>
+}
+
+<hr>
+<hr>
+<hr>
+
+<h2>Filtrar Resultados</h2>
+<input [ngModel]="filtro()" (ngModelChange)="filtro.set($event)" placeholder="Buscar por tipo..." />
+
+<ul>
+  @for (r of resultadosFiltrados(); track r.id) {
+    <li>
+      <strong>{{ r.tipoPrueba }}</strong> - {{ r.resultado }} ({{ r.interpretacion }})
+    </li>
+  }
+</ul>
